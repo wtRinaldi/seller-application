@@ -1,15 +1,17 @@
 <template>
-  <hello-world />
+  <form-stepper>
+
+  </form-stepper>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld'
+import FormStepper from '../components/FormStepper'
 
 export default {
   name: 'Home',
 
   components: {
-    HelloWorld
+    FormStepper
   }
 }
 </script>
