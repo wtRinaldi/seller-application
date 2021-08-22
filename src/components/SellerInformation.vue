@@ -2,6 +2,9 @@
   <v-container>
     <v-row>
       <v-btn @click="postSellerApplicationData">Post Data</v-btn>
+      <div>
+        Seller Information
+      </div>
     </v-row>
   </v-container>
 </template>
