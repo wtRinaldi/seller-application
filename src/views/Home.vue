@@ -1,5 +1,5 @@
 <template>
-  <form-stepper :step="1" :form-information="formInformation">
+  <form-stepper :step="formStep" :form-information="formInformation">
     <template v-slot:form>
       <component :is="currentForm" @formInformation="formInformation = $event"></component>
     </template>
@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      formStep: 1,
+      formStep: 2,
       formInformation: null
     }
   },

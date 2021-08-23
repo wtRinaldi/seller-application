@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <v-card class="">
       <div class="ma-10">
         <v-row>
           <v-card-title>Seller Application</v-card-title>
@@ -16,12 +15,7 @@
         <v-row>
           <slot name="form"></slot>
         </v-row>
-        <v-row>
-          <slot name="footer"></slot>
-        </v-row>
       </div>
-    </v-card>
-
   </v-container>
 </template>
 
