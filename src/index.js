@@ -24,7 +24,7 @@ app.use(cors(corsOptions))
 app.listen(5000, () => console.log('API on http://localhost:5000'))
 
 app.get('/sellers/:id', async (req, res) => {
-  try{
+  try {
     const doc = await client.query(
       Get(
         Ref(
@@ -37,7 +37,6 @@ app.get('/sellers/:id', async (req, res) => {
   } catch (e) {
     console.log(e)
   }
-
 })
 
 app.post('/sellers', async (req, res) => {

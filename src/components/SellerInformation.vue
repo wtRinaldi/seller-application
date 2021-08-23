@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <v-row>
-      <v-btn @click="postSellerApplicationData">Post Data</v-btn>
       <div>
         Seller Information
       </div>
@@ -11,23 +10,17 @@
 
 <script>
 
-import axios from 'axios'
-
 export default {
   data () {
     return {
-
+      formInformation: {
+        description: 'To ensure the quality of our marketplace, we limit our seller community to the most qualified creators.  Let our curators know why you\'d be a great fit',
+        title: 'Share your work with us'
+      }
     }
   },
-  methods: {
-    postSellerApplicationData () {
-      const seller = {
-        firstName: 'Amelie',
-        lastName: 'Rinaldi'
-      }
-
-      axios.post('http://localhost:5000/sellers', seller)
-    }
+  created () {
+    this.$emit('formInformation', this.formInformation)
   }
 }
 </script>
