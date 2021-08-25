@@ -8,7 +8,7 @@
       </div>
     </v-app-bar>
 
-    <v-main>
+    <v-main id="main-container">
       <router-view/>
     </v-main>
   </v-app>
@@ -24,3 +24,9 @@ export default {
   })
 }
 </script>
+
+<style>
+  #main-container {
+    background-image: url('../src/assets/bg-pattern.png');
+  }
+</style>

@@ -1,9 +1,23 @@
 <template>
-  <form-stepper :step="formStep" :form-information="formInformation">
-    <template v-slot:form>
-      <component :is="currentForm" @formInformation="formInformation = $event"></component>
-    </template>
-  </form-stepper>
+  <div>
+    <v-btn @click="formStep === 1 ? formStep = 2 : formStep = 1">Swap</v-btn>
+    <v-card class="ma-auto" width="657">
+      <form-stepper
+        :step="formStep"
+        :form-information="formInformation">
+        <template v-slot:form>
+          <keep-alive>
+            <component
+              :is="currentForm"
+              @formInformation="formInformation = $event"
+              @isValid="setData"
+              @nextStep="formStep = 2"
+            ></component>
+          </keep-alive>
+        </template>
+      </form-stepper>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -20,8 +34,16 @@ export default {
   },
   data () {
     return {
-      formStep: 2,
-      formInformation: null
+      formStep: 1,
+      formInformation: null,
+      formData: {}
+    }
+  },
+  methods: {
+    setData (dataObject) {
+      for (const property in dataObject) {
+        this.formData[property] = dataObject[property]
+      }
     }
   },
   computed: {

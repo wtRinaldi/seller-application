@@ -1,14 +1,20 @@
 <template>
   <v-container>
-    <v-row v-for="(question, property, index) in formLabels" :key="index">
-      <v-col v-cols="12">
-        <label :for="question">{{ question }}</label>
-        <v-select v-model="formInputs[property]" :items="formOptions[property]" :id="question" outlined/>
-      </v-col>
-    </v-row>
-    <v-row class="d-flex justify-end">
-      <v-btn color="primary">Submit Application</v-btn>
-    </v-row>
+    <v-form ref="form">
+      <v-row v-for="(question, property, index) in formLabels" :key="index">
+        <v-col cols="12">
+          <label :for="question">{{ question }}</label>
+          <v-select
+            v-model="formInputs[property]"
+            :items="formOptions[property]"
+            :rules="formRules[property]"
+            :id="question" outlined/>
+        </v-col>
+      </v-row>
+      <v-row class="d-flex justify-end">
+        <v-btn type="submit" @click="validate" color="primary">Submit Application</v-btn>
+      </v-row>
+    </v-form>
   </v-container>
 </template>
 
@@ -53,6 +59,11 @@ export default {
         bestDescribesQuality: null,
         bestDescribesExperience: null,
         bestDescribesBusinessUnderstanding: null
+      },
+      formRules: {
+        bestDescribesQuality: [(v) => !!v || 'Selection is required'],
+        bestDescribesExperience: [(v) => !!v || 'Selection is required'],
+        bestDescribesBusinessUnderstanding: [(v) => !!v || 'Selection is required']
       }
     }
   },
@@ -62,8 +73,12 @@ export default {
         firstName: 'Amelie',
         lastName: 'Rinaldi'
       }
-
       axios.post('http://localhost:5000/sellers', seller)
+    },
+    validate () {
+      if (this.$refs.form.validate()) {
+        this.$emit('isValid', this.formInputs)
+      }
     }
   },
   created () {
